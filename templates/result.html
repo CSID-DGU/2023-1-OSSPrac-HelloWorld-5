@@ -4,11 +4,22 @@
 <head>
    
     <title>result page</title>
+    <style>
+    #add_row {
+        position: relative;
+        top: -24.5px;
+        left: 90px;
+    }
+    #home {
+        position: relative;
+        top: 0px;
+        left: -75px;
+    }
+    </style>
     
 </head>
 
 <body>
-
     <form method="POST" action="/delete">
         <table border='1'>
             <thead>
@@ -36,11 +47,12 @@
                 {% endfor %}
             </tbody>
         </table>
-        <input type="submit" value="Delete Rows" id="delete_row">
-        <!-- <button id="add_row" onclick="window.location.href='/'">Add Row</button> -->
-       
-        
+        <input type="submit" value="Delete Row" id="delete_row">
+    
     </form>
+
     <button id="add_row" onclick="window.location.href='/'">Add Row</button>
+    <button id="home" onclick="window.location.href='/reset'">Home</button>
+
 </body>
-</html> 
+</html>
