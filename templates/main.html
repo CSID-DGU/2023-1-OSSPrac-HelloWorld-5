@@ -21,19 +21,6 @@
     </script>
 </head>
 <body>
-    <!--
-    <script>
-        function test() {
-            var name=document.getElementById('name').value;
-            var StudentNumber=document.getElementById('StudentNumber').value;
-            if (!name || !StudentNumber) {
-                alert('경고');
-                return false;
-            }
-            return true;
-        }
-    </script>
-    -->
     <form action="/result" method="POST" onsubmit="return validateForm()">
         
         <p><b>* Name</b> <input type="text" id="name" name="name"/> </p>
@@ -44,16 +31,16 @@
                 <option value="">선택</option>
                 <option value="naver.com">naver.com</option>
                 <option value="gmail.com">gmail.com</option>
-                <option value="kakao.com">kakao.com</option>
+                <option value="hanmail.net">hanmail.net</option>
             </select>
         </p>
         <p>Gender</p>
-        <p> <input type="radio" name="gender" value="male"> Male <input type="radio" name="gender" value="female"> Female </p>
-        <p>Programming languages</p>
-            <label><input type="checkbox" name="languages" value="python">Python</label>
-            <label><input type="checkbox" name="languages" value="java">Java</label>
-            <label><input type="checkbox" name="languages" value="html">Html</label>
-            <label><input type="checkbox" name="languages" value="c++">C++</label>
+        <p> <input type="radio" name="gender" value="Male"> Male <input type="radio" name="gender" value="Female"> Female </p>
+        <p>Programming Languages</p>
+            <label><input type="checkbox" name="languages" value="Python">Python</label>
+            <label><input type="checkbox" name="languages" value="Java">Java</label>
+            <label><input type="checkbox" name="languages" value="HTML">HTML</label>
+            <label><input type="checkbox" name="languages" value="C++">C++</label>
         <p><button type='submit' value="submit">submit</button></p>
         
     </form>  
