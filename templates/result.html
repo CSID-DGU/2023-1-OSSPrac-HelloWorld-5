@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <form method="POST">
+    <form method="POST" action="/delete">
         <table border='1'>
             <thead>
                 <tr>
@@ -21,16 +21,20 @@
                 </tr>
             </thead>
             <tbody>
+                {% for i in range(rows|length) %}
                 <tr>
-                    <td>{{ name }}</td>
-                    <td>{{ studentnumber }}</td>
-                    <td>{{ major }}</td>
-                    <td>{{ email_id + "@" + email_addr }}</td>
-                    <td>{{ gender }}</td>
-                    <td>{{ ', '.join(languages) }}</td>
+                    <td>{{ rows[i]['name'] }}</td>
+                    <td>{{ rows[i]['studentnumber'] }}</td>
+                    <td>{{ rows[i]['major'] }}</td>
+                    <td>{{ rows[i]['email'] }}</td>
+                    <td>{{ rows[i]['gender'] }}</td>
+                    <td>{{ rows[i]['languages'] }}</td>
+                    <td><input type="checkbox" name="rows[]" value="{{i}}"></td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
+        <input type="submit" value="Delete Rows" id="delete_row">
     </form>
 </body>
 </html> 
