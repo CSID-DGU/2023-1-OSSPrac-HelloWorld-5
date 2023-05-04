@@ -9,11 +9,11 @@ def main():
 
 @app.route('/result',methods=['POST','GET'])
 def result():
-    referring_url = request.referrer#request가 어디서 들어왔는지에 따라 다르다.
+    referring_url = request.referrer  # request가 어디서 들어왔는지에 따라 다르다.
     print("referring_url=",referring_url)
-    filename='/'+referring_url.split('/')[-1]#/뒷부분이 filename이기에 /filename형식 갖추게 한 것
+    filename='/'+referring_url.split('/')[-1]  # /뒷부분이 filename이기에 /filename형식 갖추게 한 것
     
-    languages_str=request.form.getlist('languages')[0] # languages 리스트를 ,로 이어줬습니다
+    languages_str=request.form.getlist('languages')[0]  # languages 리스트를 ,로 이어줬습니다
     for att in request.form.getlist('languages')[1:]:
         languages_str += ","+att
             
@@ -31,7 +31,7 @@ def result():
         print("data=",data)
         data_rows.append(data)
 
-        #딕셔너리 학번순으로 나열
+        # 딕셔너리 학번순으로 나열
         sorted_rows=[]
         order=[]
         for row in data_rows:
@@ -49,7 +49,7 @@ def result():
         
 
         return render_template('result.html',rows=sorted_rows)
-    else:#delete row시 redirect될 때 사용됨.
+    else:  # delete row시 redirect될 때 사용됨.
         return render_template('result.html', rows=sorted_rows)       
 
 
@@ -64,6 +64,11 @@ def delete():
             new_data_rows.append(data_rows[i])
     data_rows = new_data_rows
     return redirect('/result')
+
+@app.route('/reset')
+def reset():
+    data_rows.clear()
+    return redirect('/')
 
 if __name__=='__main__':
     app.run(debug=True)
