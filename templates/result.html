@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
     <form method="POST" action="/delete">
         <table border='1'>
             <thead>
@@ -28,13 +29,18 @@
                     <td>{{ rows[i]['major'] }}</td>
                     <td>{{ rows[i]['email'] }}</td>
                     <td>{{ rows[i]['gender'] }}</td>
-                    <td>{{ rows[i]['languages'] }}</td>
+                    <td>{{ rows[i]['languages']}}</td>
+                    
                     <td><input type="checkbox" name="rows[]" value="{{i}}"></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         <input type="submit" value="Delete Rows" id="delete_row">
+        <!-- <button id="add_row" onclick="window.location.href='/'">Add Row</button> -->
+       
+        
     </form>
+    <button id="add_row" onclick="window.location.href='/'">Add Row</button>
 </body>
 </html> 

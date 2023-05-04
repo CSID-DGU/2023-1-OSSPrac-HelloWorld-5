@@ -12,6 +12,11 @@ def result():
     referring_url = request.referrer#request가 어디서 들어왔는지에 따라 다르다.
     print("referring_url=",referring_url)
     filename='/'+referring_url.split('/')[-1]#/뒷부분이 filename이기에 /filename형식 갖추게 한 것
+    
+    languages_str=request.form.getlist('languages')[0] # languages 리스트를 ,로 이어줬습니다
+    for att in request.form.getlist('languages')[1:]:
+        languages_str += ","+att
+            
     if filename == '/':
         data=dict()
         data['name'] = request.form.get('name')
@@ -21,12 +26,31 @@ def result():
         email_addr = request.form.get('email_addr')
         data['email'] = email_id + "@" + email_addr
         data['gender'] = request.form.get('gender')
-        data['languages'] = str(request.form.getlist('languages'))[1:-1]#양쪽 끝의 '[',']' 제거
+        data['languages'] = languages_str
+        
         print("data=",data)
         data_rows.append(data)
-        return render_template('result.html',rows=data_rows)
+
+        #딕셔너리 학번순으로 나열
+        sorted_rows=[]
+        order=[]
+        for row in data_rows:
+            order.append(row['studentnumber'][:4])
+            sorted_rows.append(" ")
+
+        s_order = sorted(order)
+        for num,i in enumerate(order):
+            i_order = s_order.index(i)
+            if sorted_rows[i_order] ==" ":
+                sorted_rows[i_order] = data_rows[num] 
+            else:
+                sorted_rows[i_order+1] = data_rows[num] 
+
+        
+
+        return render_template('result.html',rows=sorted_rows)
     else:#delete row시 redirect될 때 사용됨.
-        return render_template('result.html', rows=data_rows)
+        return render_template('result.html', rows=sorted_rows)       
 
 
 
