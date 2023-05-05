@@ -13,9 +13,7 @@ def result():
     print("referring_url=",referring_url)
     filename='/'+referring_url.split('/')[-1]  # /뒷부분이 filename이기에 /filename형식 갖추게 한 것
     
-    languages_str=request.form.getlist('languages')[0]  # languages 리스트를 ,로 이어줬습니다
-    for att in request.form.getlist('languages')[1:]:
-        languages_str += ","+att
+
             
     if filename == '/':
         data=dict()
@@ -26,7 +24,8 @@ def result():
         email_addr = request.form.get('email_addr')
         data['email'] = email_id + "@" + email_addr
         data['gender'] = request.form.get('gender')
-        data['languages'] = languages_str
+        data['languages'] = str(request.form.getlist('languages'))[1:-1]#양쪽 끝의 '[',']' 제거
+        data['languages']=data['languages'].replace("'",'')#'제거하도록 수정
         
         print("data=",data)
         data_rows.append(data)
@@ -48,9 +47,9 @@ def result():
 
         
 
-        return render_template('result.html',rows=sorted_rows)
+        return render_template('result.html',rows=sorted_rows) 
     else:  # delete row시 redirect될 때 사용됨.
-        return render_template('result.html', rows=sorted_rows)       
+        return render_template('result.html', rows=data_rows)   # else일 경우 sorted_rows는 선언되지 않았음
 
 
 
