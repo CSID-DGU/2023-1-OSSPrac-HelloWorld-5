@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+    <title>result page</title>
+    <style>
+    #add_row {
+        position: relative;
+        top: -24.5px;
+        left: 90px;
+    }
+    #home {
+        position: relative;
+        top: 0px;
+        left: -75px;
+    }
+    </style>
+    
+</head>
+
+<body>
+    <form method="POST" action="/delete">
+        <table border='1'>
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>학번</th>
+                    <th>전공</th>
+                    <th>이메일</th>
+                    <th>성별</th>
+                    <th>프로그래밍 언어</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(rows|length) %}
+                <tr>
+                    <td>{{ rows[i]['name'] }}</td>
+                    <td>{{ rows[i]['studentnumber'] }}</td>
+                    <td>{{ rows[i]['major'] }}</td>
+                    <td>{{ rows[i]['email'] }}</td>
+                    <td>{{ rows[i]['gender'] }}</td>
+                    <td>{{ rows[i]['languages']}}</td>
+                    
+                    <td><input type="checkbox" name="rows[]" value="{{i}}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="submit" value="Delete Row" id="delete_row">
+    
+    </form>
+
+    <button id="add_row" onclick="window.location.href='/'">Add Row</button>
+    <button id="home" onclick="window.location.href='/reset'">Home</button>
+
+</body>
+</html>
