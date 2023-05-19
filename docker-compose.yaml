@@ -1,0 +1,9 @@
+version: "3.0"
+
+services: 
+  python-app:
+    build: . #도커파일이 있는위치
+    ports:  #local과 도커 컨테이너 내의 포트를 이어줌
+      - "80:80"
+
+#docker-compose 명령어 실행시, 컨테이너(폴더명)가 계속 돌아가므로 ctrl+c 로 탈출
