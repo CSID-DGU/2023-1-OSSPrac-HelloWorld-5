@@ -1,7 +1,8 @@
 version: "3.0"
 
 services: 
-  python-app:
+  hw5_service:
+    image: hongjiho/ossp:3.0
     build: . #도커파일이 있는위치
     ports:  #local과 도커 컨테이너 내의 포트를 이어줌
       - "80:80"
